@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import BooksList from './BooksList'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 class SearchBook extends Component {
-  static propTypes = {
-    books: propTypes.array.isRequired,
+  static prPpTypes = {
+    books: PropTypes.array.isRequired,
+    shelves: PropTypes.object.isRequired,
   }
 
   state = {
@@ -12,12 +13,12 @@ class SearchBook extends Component {
     'foundBooks': []
   }
 
-  render() {
-    return(
-      <div className="search-books">
-        <div className="search-books-bar">
-          <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
-          <div className="search-books-input-wrapper">
+  render () {
+    return (
+      <div className='search-books'>
+        <div className='search-books-bar'>
+          <a className='close-search' onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+          <div className='search-books-input-wrapper'>
             {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
               You can find these search terms here:
@@ -26,11 +27,14 @@ class SearchBook extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" placeholder="Search by title or author"/>
+            <input type='text' placeholder='Search by title or author' />
           </div>
         </div>
-        <div className="search-books-results">
-          <BooksList />
+        <div className='search-books-results'>
+          <BooksList
+            books={this.props.books}
+            changeShelf={this.props.changeShelf}
+          />
         </div>
       </div>
     )
