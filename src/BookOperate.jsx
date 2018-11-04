@@ -1,19 +1,28 @@
 import React, { Component } from 'react'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 class BookOperate extends Component {
   static propTypes = {
-    books: propTypes.array.isRequired,
+    book: PropTypes.object.isRequired,
+    shelves: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired,
+  }
+
+  changeShelf = event => {
   }
 
   render() {
     return(
-      <select>
+      <select value={this.props.book.shelf}>
         <option value="move" disabled>Move to...</option>
-        <option value="currentlyReading">Currently Reading</option>
-        <option value="wantToRead">Want to Read</option>
-        <option value="read">Read</option>
-        <option value="none">None</option>
+        {this.props.shelves.map(shelf => (
+          <option 
+            value="{shelf}"
+            key={shelf}
+            onChange={this.changeShelf}
+          >
+           {shelf}</option>
+        ))}
       </select>
     )
   }

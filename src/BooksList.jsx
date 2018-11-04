@@ -1,18 +1,26 @@
 import React, { Component } from 'react'
 import Book from './Book'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 class BooksList extends Component {
   static propTypes = {
-    books: propTypes.array.isRequired,
+    books: PropTypes.array.isRequired,
+    shelves: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired,
   }
 
   render() {
     return(
       <ol className="books-grid">
-        <li>
-          <Book />
-        </li>
+        {this.props.books.map(book => (
+          <li key={book.id}>
+                  <Book 
+                          book={book}
+                          shelves={this.props.shelves}
+                  changeShelf={this.changeShelf}
+                  />
+          </li>
+        ))}
       </ol>
     )
   }

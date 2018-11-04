@@ -28,6 +28,11 @@ class BooksApp extends React.Component {
       })
   }
 
+  changeShelf = (book, moveTo) => {
+    // BooksAPI.update(book, moveTo)
+    //   .then()
+  }
+
   render() {
     return (
       <div className="app">
@@ -38,7 +43,10 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <ShelvesList />
+                <ShelvesList 
+                  books={this.state.books} 
+                  changeShelf={this.changeShelf}
+                />
               </div>
             </div>
             <div className="open-search">
