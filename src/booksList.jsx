@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import Book from './Book'
+import Book from './book'
 import PropTypes from 'prop-types'
 
 class BooksList extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    shelves: PropTypes.object.isRequired,
-    changeShelf: PropTypes.func.isRequired
+    onChangeShelf: PropTypes.func.isRequired
   }
 
   render () {
@@ -16,8 +15,7 @@ class BooksList extends Component {
           <li key={book.id}>
             <Book
               book={book}
-              shelves={this.props.shelves}
-              changeShelf={this.props.changeShelf}
+              onChangeShelf={this.props.onChangeShelf}
             />
           </li>
         ))}

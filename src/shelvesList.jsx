@@ -1,25 +1,24 @@
 import React, { Component } from 'react'
-import BooksList from './BooksList'
+import BooksList from './booksList'
 import PropTypes from 'prop-types'
+import { shelves } from './helper'
 
 class ShelvesList extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    changeShelf: PropTypes.func.isRequired,
-    shelves: PropTypes.object.isRequired
+    onChangeShelf: PropTypes.func.isRequired
   }
 
   render () {
     return (
       <div>
-        {Object.entries(this.props.shelves).map(([key, shelf]) => (
+        {Object.entries(shelves).map(([key, shelf]) => (
           <div className='bookshelf' key={key}>
             <h2 className='bookshelf-title'>{shelf.title}</h2>
             <div className='bookshelf-books'>
               <BooksList
                 books={this.props.books.filter(book => book.shelf === key)}
-                shelves={this.props.shelves}
-                changeShelf={this.props.changeShelf}
+                onChangeShelf={this.props.onChangeShelf}
               />
             </div>
           </div>

@@ -1,29 +1,33 @@
 import React, { Component } from 'react'
-import BookOperate from './BookOperate'
+import BookOperate from './bookOperate'
 import PropTypes from 'prop-types'
+import * as BooksAPI from './booksAPI'
 
 class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
-    shelves: PropTypes.object.isRequired,
-    changeShelf: PropTypes.func.isRequired
+    onChangeShelf: PropTypes.func.isRequired
+  }
+
+  changeShelf = (book, moveTo) => {
+    BooksAPI.update(book, moveTo)
+      .then(() => this.props.onChangeShelf(book, moveTo))
   }
 
   render () {
     return (
       <div className='book'>
         <div className='book-top'>
-          <div className='book-cover' style={{ width: 128, height: 193, backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }} />
+          <div className='book-cover' style={{ width: 128, height: 193, backgroundImage: `url("${(this.props.book.imageLinks || {}).thumbnail}")` }} />
           <div className='book-shelf-changer'>
             <BookOperate
-              shelves={this.props.shelves}
               book={this.props.book}
-              changeShelf={this.props.changeShelf}
+              onChangeShelf={this.changeShelf}
             />
           </div>
         </div>
         <div className='book-title'>{this.props.book.title}</div>
-        {this.props.book.authors.map(author => (
+        {(this.props.book.authors || []).map(author => (
           <div className='book-authors' key={author}>{author}</div>
         ))}
       </div>
