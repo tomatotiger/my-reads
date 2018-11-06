@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import BookOperate from './bookOperate'
 import PropTypes from 'prop-types'
+import BookOperate from './bookOperate'
 import * as BooksAPI from './booksAPI'
 
 class Book extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Book from './book'
 import PropTypes from 'prop-types'
+import Book from './book'
 
 class BooksList extends Component {
   static propTypes = {

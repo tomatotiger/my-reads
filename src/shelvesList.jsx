@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import BooksList from './booksList'
 import PropTypes from 'prop-types'
+import BooksList from './booksList'
 import { shelves } from './helper'
 
 class ShelvesList extends Component {

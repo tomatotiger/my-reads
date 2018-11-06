@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import ShelvesList from './shelvesList'
 import * as BooksAPI from './booksAPI'
-import { Link } from 'react-router-dom'
 
 class Homepage extends Component {
   state = {
