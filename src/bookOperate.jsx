@@ -23,7 +23,7 @@ class BookOperate extends Component {
           >
             {shelf.title}</option>
         ))}
-        <option value='empty' style={{ display: 'none' }} />
+        <option value='empty'>None</option>
       </select>
     )
   }
